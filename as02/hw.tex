@@ -15,12 +15,18 @@
 \usepackage{amsthm}
 \usepackage{commath}
 
+\DeclareMathOperator{\tr}{tr}
+
 % Number sets
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\as}{a^*}
+\newcommand{\xs}{x^*}
+\newcommand{\As}{A^*}
+\newcommand{\Bs}{B^*}
 
 % Links
 \usepackage{hyperref}
@@ -56,12 +62,45 @@ after administration of $n$ dosages at regular intervals (hourly, say).
 you say about their size and sign?
 
 \textit{Solution.}
+My interpretation of $k$ and $b$ is that $k$ is the average percentage of the
+drug that is removed from the bloodstream (through the kidneys for
+example) during each interval, while $b$ is the amount (in mg) of the net dosage added to the
+bloodstream during each interval. Based on my interpretations, I assume
+that $k \in (0, 1]$ and that $b > 0$ with $b$ in size being around the
+same magnitude as the $a_n$s.
 
 \vspace{5mm}
 
 (b) Find the fixed points of the model and their stability via linearization.
 
 \textit{Solution.}
+Let $\as$ represent a fixed point of this model. Then we have
+%
+\begin{align*}
+    \as = \as - k \as + b \\
+    \implies \as = \frac{b}{k}
+    ,
+\end{align*}
+%
+which is a unique fixed point. Using linear stability analysis, we can
+determine the stability of this fixed point by looking at the magnitude
+of the iterating function's derivative at this point. For our model,
+we have that $a_{n + 1} = f(a_n)$ where $f$ is given by
+%
+\begin{equation*}
+    f(a) = a - k a + b
+    .
+\end{equation*}
+%
+Evaluating the derivative of this function we have that
+%
+\begin{equation*}
+    f^\prime(a) = 1 - k
+    .
+\end{equation*}
+%
+By my assumption on $k$ we have that $|f^\prime(a)| < 1$ for all $a$, so
+the fixed point we determined above is stable.
 
 \vspace{5mm}
 
@@ -70,6 +109,16 @@ amount of drug in the bloodstream in the long run? How does the result
 depend on the model parameters?
 
 \textit{Solution.}
+After experimenting with the applet Dr. Ruuth demonstrated during
+lectures, the amount of drug in the bloodstream appears to always
+approach the fixed point in the long run. This does not depend on the
+model parameters. However, the speed at which this happens depends strongly
+on $k$. Based on my observations, convergence takes a long time to occur
+when $k$ is very close to $0$ (which makes sense given the formula for
+the fixed point).
+
+These results make sense given that there is exactly one fixed point and
+that it is always stable.
 
 \vspace{5mm}
 
@@ -77,6 +126,15 @@ depend on the model parameters?
 not toxic?
 
 \textit{Solution.}
+For most drugs you want the amount of it in the bloodstream to be
+constant, so here we have that if $\as$ is the desired amount to be in
+the bloodstream, that $b$ should be chosen so that
+%
+\begin{align*}
+    \as = \as - k \as + b \\
+    \implies b = k \as
+    .
+\end{align*}
 
 \newpage
 
@@ -85,7 +143,12 @@ not toxic?
 
 (a) Compute $f^2(x)$.
 
-\textit{Solution.}
+\textit{Solution.} The map second-iterate map $f^2$ is given by
+%
+\begin{equation*}
+    f^2(x) = r (rx(1 - x)) (1 - (rx(1 - x))) = r^2 x (1 - x) (r x^2 - r x + 1)
+    .
+\end{equation*}
 
 \vspace{5mm}
 
@@ -93,12 +156,91 @@ not toxic?
 $2$-cycle exists only for $r > 3$.
 
 \textit{Solution.}
+A fixed point $\xs$ of $f^2$ is a point such that $f^2(\xs) = \xs$; that
+is,
+%
+\begin{equation*}
+    \xs = r^2 \xs (1 - \xs) (r (\xs)^2 - r \xs + 1)
+    .
+\end{equation*}
+%
+Moving all terms to one side and expanding, we have that
+%
+\begin{equation*}
+    -r^3 (\xs)^4 + 2 r^3 (\xs)^3 + r^2(r + 1) (\xs)^2 + (r^2 - 1) \xs = 0
+    .
+\end{equation*}
+%
+This is complicated enough that it's easiest just to use Maple to solve
+for the fixed points to obtain
+%
+\begin{equation*}
+    \xs \in \cbr{
+        0,
+        \frac{r - 1}{r},
+        \frac{r + 1 + \sqrt{r^2 - 2 r - 3}}{2 r},
+        \frac{r + 1 - \sqrt{r^2 - 2 r - 3}}{2 r}
+    }
+    .
+\end{equation*}
+%
+For the non-trivial 2-cycles, clearly $0$ is a trivial 2-cycle. We see
+that for the first non-zero fixed point we require $r > 1$, while for
+the remaining two we have that
+%
+\begin{equation*}
+    r^2 - 2 r - 3 = (r + 1) (r - 3)
+    ,
+\end{equation*}
+%
+so in order for these to be valid points we require $r \geq 3$. Next,
+we will show that for non-trivial 2-cycles we must have $r > 3$; that is,
+we need to show $r = 3$ results in trivial 2-cycles.
+
+By plugging in $r = 3$ our set of fixed points becomes $\xs \in \cbr{0,
+\frac{2}{3}}$. We already pointed out that $0$ is a trivial 2-cycle.
+Because $f(2/3) = 3 \cdot 2 / 3 (1 - 2/3) = 2/3$, it turns out that
+$2/3$ is also a trivial 2-cycle. Hence non-trivial 2-cycles exist only
+for $r > 3$ (if they exist at all).
+
+By a similar calculation to what we did above, we can determine that
+$(r - 1) / r$ is always a trivial 2-cycle. However we have that
+%
+\begin{align*}
+    f\del{\frac{r + 1 + \sqrt{r^2 - 2 r - 3}}{2 r}}
+        &= r \frac{r + 1 + \sqrt{r^2 - 2 r - 3}}{2 r} \del{1 - \frac{r + 1 + \sqrt{r^2 - 2 r - 3}}{2 r}} \\
+        &= \frac{1}{4 r} \del{r + 1 + \sqrt{r^2 - 2 r - 3}} \del{r - 1 - \sqrt{r^2 - 2 r - 3}} \\
+        &= \frac{1}{4 r} \del{2 r + 2 - 2 \sqrt{r^2 - 2 r - 3}} \\
+        &= \frac{r + 1 - \sqrt{r^2 - 2 r - 3}}{2 r}
+\end{align*}
+%
+and similarly
+%
+\begin{equation*}
+    f\del{\frac{r + 1 - \sqrt{r^2 - 2 r - 3}}{2 r}}
+        = \frac{r + 1 + \sqrt{r^2 - 2 r - 3}}{2 r}
+    .
+\end{equation*}
+%
+Since these points are never equal two each other for $r > 3$ this
+establishes the existence of a non-trivial 2-cycle.
 
 \vspace{5mm}
 
 (c) Compute $\dod{}{x} f^2(x)$.
 
 \textit{Solution.}
+We can compute the derivative of $f^2$ using the product rule:
+%
+\begin{align*}
+    \dod{f^2}{x}
+        &= \dod{}{x} r^2 x (x - 1) (r x^2 - r x + 1) \\
+        &= r^2 (1 - x) (r x^2 - r x + 1)
+           - r^2 x (r x^2 - r x + 1)
+           + r^2 x (1 - x) (2 r x - r) \\
+        &=  r^2 (1 - 2 x) (2 r x^2 - 2 r x + 1)
+        .
+\end{align*}
 
 \vspace{5mm}
 
@@ -106,6 +248,34 @@ $2$-cycle exists only for $r > 3$.
 \sqrt{6}$, and unstable for $r > 1 + \sqrt{6}$.
 
 \textit{Solution.}
+Let's write the fixed points that result in the non-trivial 2-cycle as
+%
+\begin{equation*}
+    \xs_t \coloneqq \frac{r + 1 + t \sqrt{r^2 - 2 r - 3}}{2 r}
+\end{equation*}
+%
+where $t = 1, -1$. Substituting this point into the derivative of $f^2$
+and simplifying (using Maple) we obtain that, for either value of $t$,
+%
+\begin{equation*}
+    \partial x f^2(\xs_t) = -r^2 + 2 r + 4
+    .
+\end{equation*}
+%
+For $r > 3$, we have that $\partial x f^2(\xs_t) < 1$ and is a strictly
+decreasing function. To find out when this polynomial (in $r$) becomes
+$-1$ we need to solve
+%
+\begin{equation*}
+    -r^2 + 2 r + 4 = - 1
+    ,
+\end{equation*}
+%
+which, using the quadratic formula, gives us a positive root $1 + \sqrt{6}$.
+Hence we have that for $3 < 1 + \sqrt{6}$, $-1< \partial x f^2(\xs_t) < 1$
+and so the nontrivial 2-cycle is stable; for $r > 1 + \sqrt{6}$,
+$\partial x f^2(\xs_t) < - 1$, so it is unstable.
+
 
 \newpage
 
@@ -122,11 +292,87 @@ where $\mu_1, \mu_2, \mu_3, \mu_4$ are positive constants.
 
 \textit{Solution.}
 
+Let $(\As, \Bs)$ represent the fixed points of the model. Thus we have
+%
+\begin{align*}
+    \As &= \mu_1 \As - \mu_3 \As \Bs, \\
+    \Bs &= \mu_2 \Bs - \mu_4 \As \Bs,
+\end{align*}
+%
+Clearly $(\As, \Bs) = (0, 0)$ is a valid fixed point.
+If $(\As, \Bs) \neq (0, 0)$ then we can simplify the above system of equations to
+%
+\begin{align*}
+    0 &= \mu_1 - 1 - \mu_3 \Bs, \\
+    0 &= \mu_2 - 1 - \mu_4 \As.
+\end{align*}
+%
+Solving for $\As$ and $\Bs$ we have
+%
+\begin{align*}
+    \As &= \frac{\mu_2 - 1}{\mu_4}, \\
+    \Bs &= \frac{\mu_1 - 1}{\mu_3},
+\end{align*}
+%
+which gives us our other solution.
+
+
 \vspace{5mm}
 
 (b) Determine the stability of the fixed points for the specific case
 $\mu_1 = 1.2, \mu_2 = 1.3, \mu_3 = 0.001, \mu_4 = 0.002$.
 
 \textit{Solution.}
+Here the Jacobian is given by
+%
+\begin{equation*}
+    J =
+        \begin{pmatrix}
+            \mu_1 - \mu_3 B & -\mu_3 A \\
+            - \mu_4 B & \mu_2 - \mu_4 A
+        \end{pmatrix}
+\end{equation*}
+%
+(this is determined by the first equation given to us).
+Taking the determinant and trace of this system we have that
+%
+\begin{align*}
+    \det J &= (\mu_1 - \mu_3 B) (\mu_2 - \mu_4 A) - (- \mu_3 A) (- \mu_4 B) \\
+           &= -A \mu_1 \mu_4 - B \mu_2 \mu_3 + \mu_1 \mu_2
+           ,
+           \\
+    \tr J &= \mu_1 + \mu_2 - \mu_3 B - \mu_4 A
+    .
+\end{align*}
+%
+Recall that for two-dimensional systems, the Jury conditions
+%
+\begin{equation*}
+    |\tr J| < 1 + \det J < 2
+\end{equation*}
+%
+are necessary and sufficient for stability. Now using the values of $\mu$
+as specified above we have that
+%
+\begin{align*}
+    \det J &= - 0.0024 A - 0.0013 B + 1.56, \\
+    \tr J &= 2.5 - 0.001 B - 0.002 A
+    .
+\end{align*}
+%
+For the fixed points $(\As, \Bs) = (0, 0)$ we have $\det J = 1.56$ and
+$\tr J = 2.5$ so the Jury conditions are satisfied. Hence this pair of
+fixed points is stable.
+
+For the fixed points
+%
+\begin{align*}
+    (\As, \Bs)
+        &= \del{\frac{\mu_2 - 1}{\mu_4}, \frac{\mu_1 - 1}{\mu_3}} \\
+        &= (150, 200)
+\end{align*}
+%
+we have $\det J = 0.94$ and $\tr J = 2$, so in this case the Jury
+conditions are not satisfied, so these fixed points are unstable.
 
 \end{document}
