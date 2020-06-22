@@ -1,0 +1,152 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{commath}
+
+% Number sets
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 461 assignment 4} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-07-03}
+
+3.9.2. Psychologists interested in learning theory study learning
+curves. A learning curve is a graph of a function $P(t)$, the
+performance of someone learning a skill as a function of the training
+time $t$.
+
+(a) What does $\od{P}{t}$ represent?
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(b) Discuss why the differential equation
+%
+\begin{equation*}
+    \dod{P}{t} = k (M - P),
+\end{equation*}
+%
+where $k$ and $M$ are positive constants, is a reasonable model for
+learning. What is the meaning of $k$ and $M$? What would be a reasonable
+initial condition for the model? Include a graph of $\od{P}{t}$ versus
+$P$ as part of your discussion.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(c) Make a qualitative sketch of solutions to the differential equation.
+
+\textit{Solution.}
+
+\newpage
+
+3.9.16. Some populations produce waste products, which in high concentrations are
+toxic to the population itself. For example, algae or bacteria show the structure
+in Figure 3.25 (in the course textbook). Let the population density be denoted
+by $n(t)$ and the toxin concentration by $y(t)$. Then
+%
+\begin{align*}
+    \dot{n} &= (\alpha - \beta - K y) n, \\
+    \dot{y} &= \gamma n - \delta y,
+\end{align*}
+%
+with $\alpha, \beta, \gamma, \delta, K \geq 0$.
+
+(b) Find the nullclines, the steady states, and sketch a phase portrait.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(c) Sketch the vector field.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(d) Linearize the system and characterize each of the steady states
+(stable/unstable, saddle, node, spiral, center, etc.). Find the regions
+in parameter space such that the nontrivial (coexistence) equilibrium is
+either a node or a spiral.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(e) Sketch some trajectories for the case of $\delta < 4(\alpha - \beta)$,
+and explain what you see in terms of the biology.
+
+\textit{Solution.}
+
+\newpage
+
+3.9.17. Imagine a small pond that is mature enough to support wildlife.
+We desire to stock the pond with game fish, say trout or bass Let $T(t)$
+denote the population of the trout at any time $t$, and let $B(t)$
+denote the bass population.
+
+(a) Initially, assume that the pond environment can support an unlimited
+number of trout in isolation (i.e., growth of the trout population is
+exponential). Write down an equation that describes the evolution of the
+trout population in the absence of competition.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(b) Modify the equation to account for competition of the trout with the
+bass population for living space and a common food supply. You may assume
+that the growth rate of the trout population depends linearly on the bass
+population.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(c) Repeat (a) and (b) for the bass population.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(e) What are the steady states of the system? Determine stability of the
+steady states using linearization.
+
+\textit{Solution.}
+
+\end{document}
