@@ -267,7 +267,7 @@ This has solutions
     .
 \end{equation*}
 %
-This will be a node provided that
+This will be a stable node provided that
 %
 \begin{equation*}
     \delta^2 \geq 4 (\alpha - \beta)
@@ -282,7 +282,36 @@ the coexistence equilibrium will be a stable spiral.
 and explain what you see in terms of the biology.
 
 \textit{Solution.}
-do this tomorrow
+In order to be able to plot anything, we need to fix the values of our
+constants. Let $\delta = 1 / 2$, $\alpha = 1$, $\beta = 1/2$,
+$\gamma = 1$, $K = 1$.
+
+Using these values, we have the vector field shown in
+Figure~\ref{fig:q3916a} along with some solutions plotted
+in~\ref{fig:q3916b}. We can see clearly that the coexistence equilibrium
+is in fact stable. In terms of the biology, it makes sense that we see
+spiral like behaviour for similar reasons to the predatory prey model:
+when the toxin concentration is low, the population can flourish; the
+higher the population the higher the toxin concentration, which
+eventually leads to a high enough toxin concentration such that the
+population dies out; but as the population dies out then the toxin
+concentration lowers. In this particular case, there is a stable
+coexistence equilibrium that is reached quickly be most initial
+conditions.
+
+\begin{figure}
+    \includegraphics[width=4in]{q3916a}
+    \centering
+    \caption{Vector field using $\delta = 1 / 2$, $\alpha = 1$, $\beta = 1/2$ $\gamma = 1$, $K = 1$}
+    \label{fig:q3916a}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=4in]{q3916b}
+    \centering
+    \caption{Vector field with particular solutions using $\delta = 1 / 2$, $\alpha = 1$, $\beta = 1/2$ $\gamma = 1$, $K = 1$}
+    \label{fig:q3916b}
+\end{figure}
 
 \newpage
 
@@ -297,7 +326,16 @@ exponential). Write down an equation that describes the evolution of the
 trout population in the absence of competition.
 
 \textit{Solution.}
-In this case the 
+If there are no limits to the growth of the trout, then
+the trout population grows in proportion to its size at any time $t$.
+That is,
+%
+\begin{equation*}
+    \dod{T}{t} = k_1 T
+    ,
+\end{equation*}
+%
+where $k_1 > 0$.
 
 \vspace{5mm}
 
@@ -307,12 +345,39 @@ that the growth rate of the trout population depends linearly on the bass
 population.
 
 \textit{Solution.}
+Now we need to account for competition. I would naturally assume we
+need to account for interactions (and thus have $T B$ terms in the differential
+equation) but the question tells us the growth has a linear dependence on the
+bass population, so we have
+%
+\begin{equation*}
+    \dod{T}{t} = k_1 T - k_2 B
+    ,
+\end{equation*}
+%
+where $k_2 > 0$.
 
 \vspace{5mm}
 
 (c) Repeat (a) and (b) for the bass population.
 
 \textit{Solution.}
+The equivalent equation for part (a) for the bass population is
+%
+\begin{equation*}
+    \dod{B}{t} = k_3 B
+    ,
+\end{equation*}
+%
+where $k_3 > 0$; and the equivalent equation for part (b) for the
+bass population is
+%
+\begin{equation*}
+    \dod{B}{t} = k_3 B - k_4 T
+    ,
+\end{equation*}
+%
+where $k_4 > 0$.
 
 \vspace{5mm}
 
@@ -320,5 +385,67 @@ population.
 steady states using linearization.
 
 \textit{Solution.}
+Now we consider the system
+%
+\begin{align*}
+    \dod{T}{t} &= k_1 T - k_2 B, \\
+    \dod{B}{t} &= k_3 B - k_4 T
+    .
+\end{align*}
+%
+Solving for the steady states in
+%
+\begin{align*}
+    0 &= k_1 T - k_2 B, \\
+    0 &= k_3 B - k_4 T
+    ,
+\end{align*}
+%
+clearly we have the trivial equilibrium $(0, 0)$. By performing some simple
+algebra, there is an additional solution provided that
+%
+\begin{equation*}
+    k_1 = \frac{k_2 k_4}{k_3}
+    ;
+\end{equation*}
+%
+if this condition is true then $(T, k_4 / k_3 \cdot T)$, where $T \geq 0$, is
+are coexistence equilibriums.
+
+To determine stability, let
+%
+\begin{align*}
+    f_1(T, B) &= k_1 T - k_2 B, \\
+    f_2(T, B) &= -k_4 T + k_3 B
+    .
+\end{align*}
+%
+We evaluate the Jacobian
+%
+\begin{equation*}
+    J =
+    \begin{bmatrix}
+        \partial_T f_1 & \partial_B f_1 \\
+        \partial_T f_2 & \partial_B f_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        k_1 & -k_2 \\
+        -k_4 & k_3
+    \end{bmatrix}
+    .
+\end{equation*}
+%
+To now solve for the eigenvalues:
+%
+\begin{align*}
+    &\det(J - \lambda I) = 0 \\
+    &\implies \lambda^2 + (-k_1 - k_3) \lambda + (k_1 k_3 - k_2 k_4) = 0 \\
+    &\implies \lambda = \frac{k_1 + k_3}{2} \pm \frac{1}{2} \sqrt{(k_1 + k_3)^2 - 4 (k_1 k_3 - k_2 k_4)}
+    .
+\end{align*}
+%
+We see that both eigenvalues have positive real parts, so all equilibria
+are unstable.
 
 \end{document}
