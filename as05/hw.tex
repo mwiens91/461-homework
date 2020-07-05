@@ -1,0 +1,115 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{commath}
+
+% Number sets
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 461 assignment 5} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-07-31}
+
+3.9.14. Write down a differential equation for the following pathway:
+%
+\begin{equation*}
+    A \xrightleftharpoons[k_1]{k_{-1}}
+    B \xrightleftharpoons[k_2]{k_{-2}}
+    C \xrightleftharpoons[k_3]{k_{-3}}
+    A
+    .
+\end{equation*}
+
+\textit{Solution.}
+
+\newpage
+
+4.5.2. (a) Show that the function
+%
+\begin{equation*}
+    g(x, t) = \frac{1}{2 \sqrt{\pi D t}} \exp \del[3]{\frac{x^2}{4 D t}}
+\end{equation*}
+%
+solves the diffusion equation $u_t = D u_{x x}$.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(b) Make sure that $g(x, t) \geq 0$ for all $t \geq 0$ and $x \in \R$ and
+investigate the limits of $x \to \pm \infty$ and $t \to \infty$.
+
+\textit{Solution.}
+
+\newpage
+
+4.5.3. Certain ant species (such as \textit{Pogonomyrmex badius}) use
+pheromones as a signal for danger. A good model for the spread of the
+pheromones in the tube is the one-dimensional diffusion equation. In
+experiments, Bosseri and Wilson released ants in a long tube and stimulated
+one ant until it released a pheromone. They measured within which distance
+and after which time delay the other ants would react to the signal.
+We assume that at time $t = 0$ a signal of strength $\alpha$ is released.
+The diffusion constant is $D = 1$. Other ants react to the stimulus if the
+concentration they perceive is $10\%$ of $\alpha$ or higher.
+
+(a) For each $t > 0$, find the region in the tube $0 \leq x \leq x(t)$ where
+the ants would react to the stimulus (region of influence).
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(b) Sketch the time evolution of $x(t)$.
+
+\textit{Solution.}
+
+\vspace{5mm}
+
+(c) Find the time $t^*$ such that the region of influence is empty for all
+$t > t^*$.
+
+\textit{Solution.}
+
+\newpage
+
+5.8.2. Use Table 5.2 (from the course textbook) and show that the eigenvector
+$u^*$ of the transition matrix $P$ with eigenvalue $1$ is given by formula 5.3
+(also from the course textbook).
+
+\textit{Solution.}
+
+\end{document}
