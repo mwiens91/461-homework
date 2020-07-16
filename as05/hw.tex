@@ -54,18 +54,105 @@
 \end{equation*}
 
 \textit{Solution.}
+For this pathway we have the following system of differential equations:
+%
+\begin{align*}
+    \dod{a}{t} &= - k_{-1} a + k_1 b + k_{-3} c - k_3 a
+    , \\
+    \dod{b}{t} &= k_{-1} a - k_1 b - k_{-2} b + k_2 c
+    , \\
+    \dod{c}{t} &= k_{-2} b - k_2 c - k_{-3} c + k_3 a
+    ,
+\end{align*}
+%
+where $a$, $b$, and $c$, denote the concentrations of A, B, and C, respectively.
+Combining terms, we can equivalently write the system as
+%
+\begin{align*}
+    \dod{a}{t} &= - (k_{-1} + k_3) a + k_1 b + k_{-3} c
+    , \\
+    \dod{b}{t} &= k_{-1} a - (k_1 + k_{-2}) b + k_2 c
+    , \\
+    \dod{c}{t} &= k_3 a + k_{-2} b - (k_2 + k_{-3}) c
+    .
+\end{align*}
 
 \newpage
 
 4.5.2. (a) Show that the function
 %
 \begin{equation*}
-    g(x, t) = \frac{1}{2 \sqrt{\pi D t}} \exp \del[3]{\frac{x^2}{4 D t}}
+    g(x, t) = \frac{1}{2 \sqrt{\pi D t}} \exp \del[3]{- \frac{x^2}{4 D t}}
 \end{equation*}
 %
 solves the diffusion equation $u_t = D u_{x x}$.
 
 \textit{Solution.}
+Throughout this solution, note that we will make repeated use of the chain rule.
+Calculating $g_t$ we have
+%
+\begin{align*}
+    \dpd{g}{t}
+        &=
+        \dpd{}{t} \del{\frac{1}{2 \sqrt{\pi D t}}} \exp \del[3]{- \frac{x^2}{4 D t}}
+        +
+        \frac{1}{2 \sqrt{\pi D t}} \dpd{}{t} \del{\exp \del[3]{- \frac{x^2}{4 D t}}}
+        \\
+        &=
+        -
+        \frac{1}{2 t} \cdot \frac{1}{2 \sqrt{\pi D t}} \exp \del[3]{- \frac{x^2}{4 D t}}
+        +
+        \frac{1}{2 \sqrt{\pi D t}} \cdot \frac{x^2}{4D} \cdot \frac{1}{t^2} \cdot \exp \del[3]{- \frac{x^2}{4 D t}}
+        \\
+        &=
+        \del{- \frac{1}{2 t} + \frac{x^2}{4Dt^2}} g(x, t)
+        .
+\end{align*}
+%
+For the $x$-derivatives, we first calculate $g_x$:
+%
+\begin{align*}
+    \dpd{g}{x}
+        &= \frac{1}{2 \sqrt{\pi D t}} \dpd{}{x} \del{\exp \del[3]{- \frac{x^2}{4 D t}}}
+        \\
+        &= - \frac{1}{2 \sqrt{\pi D t}} \cdot \frac{1}{4Dt} \cdot 2 x \cdot \exp \del[3]{- \frac{x^2}{4 D t}}
+        \\
+        &= - \frac{x}{2Dt} g(x, t)
+        .
+\end{align*}
+%
+Using our expression for $g_x$, we can calculate $g_{xx}$:
+%
+\begin{align*}
+    \dpd[2]{g}{x}
+        &= \dpd{}{x} \del{\dpd{g}{x}}
+        \\
+        &= - \dpd{}{x} \del{\frac{x}{2Dt} g(x, t)}
+        \\
+        &=
+        -
+        \dpd{}{x} \del{\frac{x}{2Dt}} g(x, t)
+        -
+        \frac{x}{2Dt} \dpd{g}{x}
+        \\
+        &=
+        -
+        \frac{1}{2Dt} \cdot g(x, t)
+        +
+        \frac{x}{2Dt} \del{\frac{x}{2Dt} g(x, t)}
+        \\
+        &=
+        \del{- \frac{1}{2 D t} + \frac{x^2}{4 D^2 t^2}} g(x, t)
+        \\
+        &=
+        \frac{1}{D} \del{- \frac{1}{2 t} + \frac{x^2}{4 D t^2}} g(x, t)
+        \\
+        &=
+        \frac{1}{D} g_t
+        .
+\end{align*}
+%
+Thus we have that $g_t = D g_{xx}$, and so $g$ solves the diffusion equation.
 
 \vspace{5mm}
 
@@ -73,6 +160,30 @@ solves the diffusion equation $u_t = D u_{x x}$.
 investigate the limits of $x \to \pm \infty$ and $t \to \infty$.
 
 \textit{Solution.}
+For $t > 0$ the term $\frac{1}{2 \sqrt{\pi D t}}$ is strictly positive.
+The exponential function is also strictly positive. Hence $g(x, t) > 0$
+(and, by extension, $g(x, t) \geq 0$) for all $t > 0$ and $x \in \R$.
+What happens when $t = 0$? Strictly speaking, $g(x, 0)$ is not defined,
+but we can investigate the ``right-handed'' limit
+%
+\begin{equation*}
+    \lim_{t \to 0^+} g(x, t)
+    .
+\end{equation*}
+%
+This is a non-trivial calculation, so I will simply state the result
+that $g(x, t) \to \delta_0$ as $t \to 0^+$ in the sense of distributions,
+where $\delta_0$ is the Dirac delta function (which is technically a
+distribution).
+
+As $t \to \infty$ we have $\frac{1}{2 \sqrt{\pi D t}} \to 0$ and also
+$\exp ( - \frac{x^2}{4 D t} ) \to 1$ for all $x \in \R$, and
+hence $g(x, t) \to 0$ for all $x \in \R$.
+
+In the spatial domain, for any $t > 0$ we have that
+$\exp ( - \frac{x^2}{4 D t} ) \to 0$ as $x \to \pm \infty$, so
+$g(x, t) \to 0$ as $x \to \pm \infty$ for any $t > 0$.
+
 
 \newpage
 
