@@ -222,5 +222,90 @@ $u^*$ of the transition matrix $P$ with eigenvalue $1$ is given by formula 5.3
 (also from the course textbook).
 
 \textit{Solution.}
+Following the notation used in the course textbook, the columns of the
+probability vector are, in order, RO, HI, TU, RM, BE. We will relabel
+these as $o$, $h$, $t$, $m$, and $b$, respectively. The associated
+transition matrix $P$ is then given by
+%
+\begin{equation*}
+    P =
+    \begin{pmatrix}
+        0.12 & 0.14 & 0.12 & 0.12 & 0.13 \\
+        0.12 & 0.05 & 0.08 & 0.28 & 0.27 \\
+        0.12 & 0.10 & 0.10 & 0.05 & 0.08 \\
+        0.42 & 0.53 & 0.32 & 0.20 & 0.19 \\
+        0.22 & 0.18 & 0.38 & 0.35 & 0.33
+    \end{pmatrix}
+    .
+\end{equation*}
+%
+To obtain the eigenvector $u^*$, we find the solution of
+%
+\begin{equation*}
+    (P - I) u^* = 0
+    \implies
+    \begin{pmatrix}
+        - 0.88 & 0.14 & 0.12 & 0.12 & 0.13 \\
+        0.12 & - 0.95 & 0.08 & 0.28 & 0.27 \\
+        0.12 & 0.10 & - 0.90 & 0.05 & 0.08 \\
+        0.42 & 0.53 & 0.32 & - 0.80 & 0.19 \\
+        0.22 & 0.18 & 0.38 & 0.35 & - 0.67
+    \end{pmatrix}
+    \begin{pmatrix}
+        o^* \\
+        h^* \\
+        t^* \\
+        m^* \\
+        b^*
+    \end{pmatrix}
+    = 0
+    %
+\end{equation*}
+%
+where the columns of $u^*$ sum to $1$.
+Equivalently, we can obtain $u^*$ by solving
+%
+\begin{align*}
+    - 0.88 o^* + 0.14 h^* + 0.12 t^* + 0.12 m^* + 0.13 b^* &= 0, \\
+    0.12 o^* - 0.95  h^* + 0.08 t^* + 0.28 m^* + 0.27 b^* &= 0, \\
+    0.12 o^* + 0.10  h^* - 0.90 t^* + 0.05 m^* + 0.08 b^* &= 0, \\
+    0.42 o^* + 0.53  h^* + 0.32 t^* - 0.80 m^* + 0.19 b^* &= 0, \\
+    0.22 o^* + 0.18  h^* + 0.38 t^* + 0.35 m^* - 0.67 b^* &= 0,
+\end{align*}
+and then normalizing to ensure that all variables sum to $1$. Solving
+this system of equations in Maple, we obtain
+%
+\begin{align*}
+    o^* &= 1.554108928 x, \\
+    h^* &= 2.394060124 x, \\
+    t^* &= x, \\
+    m^* &= 3.665379365 x, \\
+    b^* &= 3.635399350 x,
+    .
+\end{align*}
+%
+To determine what $x$ should be, we solve
+%
+\begin{align*}
+    &1.554108928 x + 2.394060124 x + x + 3.665379365 x + 3.635399350 x = 1 \\
+    &\implies 12.24894777 x = 1 \\
+    &\implies x = 0.08163966561
+    .
+\end{align*}
+%
+Hence we obtain the approximate (due to floating point arithmetic)
+solution
+%
+\begin{align*}
+    o^* &= 0.1268769332, \\
+    h^* &= 0.1954502680, \\
+    t^* &= 0.0816396656, \\
+    m^* &= 0.2992403457, \\
+    b^* &= 0.2967927873,
+    .
+\end{align*}
+%
+which agrees closely with the solution in the course textbook (which
+itself is an approximate solution).
 
 \end{document}
