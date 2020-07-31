@@ -201,12 +201,67 @@ concentration they perceive is $10\%$ of $\alpha$ or higher.
 the ants would react to the stimulus (region of influence).
 
 \textit{Solution.}
+Let $u(t, x)$ be the concentration of pheromone at time $t$ and position $x$
+along the tube. We have that at time $t = 0$ and position $x = 0$ a signal
+of strength $\alpha$ is released. We are also told that we can use
+the heat equation with constant $D = 1$ to model the diffusion of the
+pheromone. Hence, we can use a scaled version of the fundamental solution
+to represent $u$:
+%
+\begin{equation*}
+    u(t, x) = \frac{\alpha}{2 \sqrt{\pi t}} e^{-\frac{x^2}{4 t}}
+    .
+\end{equation*}
+%
+Note that $u$ integrates to $\alpha$ over space and satisfies the
+diffusion equation. Initially, all the pheromone is concentrated
+at one point (at $x = 0$, where the ant is) and gradually spreads
+in either direction of the tube as time goes forward. A plot
+of $u(t, x)$ at different snapshots $t$ is shown in Figure~\ref{fig:q453a}
+(taking $\alpha = 0.75$).
+%
+\begin{figure}
+    \includegraphics[width=5in]{q453a}
+    \centering
+    \caption{Plot of $u(t, x)$ for different times $t$ and $\alpha = 0.75$}
+    \label{fig:q453a}
+\end{figure}
+
+For each point $(t_0, x_0)$, if an ant were to react to a stimulus
+we would require that $u(t_0, x_0) \geq 0.1 \alpha$. Simplifying this
+constraint, we have
+%
+\begin{align*}
+    &\frac{\alpha}{2 \sqrt{\pi t_0}} e^{-\frac{x_0^2}{4 t_0}} \geq 0.1 \alpha \\
+    &\implies \frac{5}{\sqrt{\pi t_0}} e^{-\frac{x_0^2}{4 t_0}} \geq 1 \\
+    &\implies x_0^2 \leq 4 t_0 \log \del{\frac{5}{\sqrt{\pi t_0}}}
+    .
+\end{align*}
+%
+Any point $(t_0, x_0)$ satisfying this constraint is a point where an
+ant would react to the pheromone.
+
+Taking the positive root, we thus obtain the function
+%
+\begin{equation*}
+    x(t) = 4 t \log \del{\frac{5}{\sqrt{\pi t}}}
+    .
+\end{equation*}
 
 \vspace{5mm}
 
 (b) Sketch the time evolution of $x(t)$.
 
 \textit{Solution.}
+A plot of $x(t)$ is shown in Figure~\ref{fig:q453b}.
+
+\begin{figure}
+    \includegraphics[width=5in]{q453b}
+    \centering
+    \caption{Plot of $x(t)$ from part (a)}
+    \label{fig:q453b}
+\end{figure}
+
 
 \vspace{5mm}
 
@@ -214,6 +269,17 @@ the ants would react to the stimulus (region of influence).
 $t > t^*$.
 
 \textit{Solution.}
+The easiest way to solve for this is to observe that $u(t, x)$ always
+has its maxima in space at $x = 0$. Hence, finding $t^*$ is as simple
+as solving for $u(t^*, 0) = 0.1 \alpha$:
+%
+\begin{align*}
+    &u(t^*, 0) = 0.1 \alpha \\
+    &\implies \frac{\alpha}{2 \sqrt{\pi t^*}} e^0 = 0.1 \alpha \\
+    &\implies \frac{5}{\sqrt{\pi t^*}} = 1 \\
+    &\implies t^* = \frac{25}{\pi}
+    .
+\end{align*}
 
 \newpage
 
